@@ -15,7 +15,7 @@ do
 done
 
 for file in $(ls ${FROM_DIR}); do
-    if [ ${file: -4} == ".jpg" ]; then
+    if [[ ${file: -4} == .jpg ]] || [[ ${file: -4} == .cr2 ]] || [[ ${file: -4} == .nef ]]; then
         path_file=${FROM_DIR}/${file};
         date=$(date -r "$path_file" +%Y_%m_%d)
         mkdir -p "$TO_DIR$date"
