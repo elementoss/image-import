@@ -14,17 +14,17 @@ do
     esac
 done
 
-for x in $(ls $FROM_DIR); do
-    file=$FROM_DIR/$x;
+for file in $(ls ${FROM_DIR}); do
     if [ ${file: -4} == ".jpg" ]; then
-        d=$(date -r "$file" +%Y_%m_%d)
-        mkdir -p "$TO_DIR$d"
-        if $MOVE ; then
-            mv "$file" "$TO_DIR$d/"
-            echo "$x move to $TO_DIR$d/"
+        path_file=${FROM_DIR}/${file};
+        date=$(date -r "$path_file" +%Y_%m_%d)
+        mkdir -p "$TO_DIR$date"
+        if ${MOVE} ; then
+            mv "$path_file" "$TO_DIR$date/"
+            echo "$file move to $TO_DIR$date/"
         else
-            cp "$file" "$TO_DIR$d/"
-            echo "$x copy to $TO_DIR$d/"
+            cp "$path_file" "$TO_DIR$date/"
+            echo "$file copy to $TO_DIR$date/"
         fi
     fi
 done
