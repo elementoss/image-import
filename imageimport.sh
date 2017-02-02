@@ -4,13 +4,28 @@ FROM_DIR=$(pwd)
 TO_DIR=$(pwd)
 MOVE=false
 
-while getopts f:t:m option
+while getopts f:t:m:h option
 do
     case "${option}"
     in
         f) FROM_DIR=${OPTARG};;
         t) TO_DIR=${OPTARG};;
-        m) MOVE=true
+        m) MOVE=true;;
+        h) echo 'SYNOPSIS'
+           echo '   imageimport.sh [OPTION]'
+           echo
+           echo 'DESCRIPTION'
+           echo '   Simple script t copy images from current directory to sub-directories by file create date (YYYY-MM-DD).'
+           echo
+           echo 'OPTIONS'
+           echo '   -f      Copy images from path'
+           echo '   -t      Copy images to path'
+           echo '   -m      Moves images instead copy'
+           echo '   -h      Print this help'
+           echo
+           echo 'EXAMPLES'
+           echo '   imageimport.sh -f /home/user/temp/ -t /home/user/pic/ -m'
+           exit 1;
     esac
 done
 
@@ -28,5 +43,3 @@ for file in $(ls ${FROM_DIR}); do
         fi
     fi
 done
-
-
