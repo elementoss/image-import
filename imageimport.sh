@@ -18,13 +18,13 @@ for file in $(ls ${FROM_DIR}); do
     if [[ ${file: -4} == .jpg ]] || [[ ${file: -4} == .cr2 ]] || [[ ${file: -4} == .nef ]]; then
         path_file=${FROM_DIR}/${file};
         date=$(date -r "$path_file" +%Y_%m_%d)
-        mkdir -p "$TO_DIR$date"
+        mkdir -p "$TO_DIR/$date"
         if ${MOVE} ; then
-            mv "$path_file" "$TO_DIR$date/"
-            echo "$file move to $TO_DIR$date/"
+            mv "$path_file" "$TO_DIR/$date/"
+            echo "$file move to $TO_DIR/$date/"
         else
-            cp "$path_file" "$TO_DIR$date/"
-            echo "$file copy to $TO_DIR$date/"
+            cp "$path_file" "$TO_DIR/$date/"
+            echo "$file copy to $TO_DIR/$date/"
         fi
     fi
 done
